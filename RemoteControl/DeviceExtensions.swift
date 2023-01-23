@@ -29,6 +29,7 @@ extension Device {
 }
 
 extension Device {
+  // convert from NSSet <--> Array
   public var relayArray: [Relay] {
     get {
       let set = relays as? Set<Relay> ?? []
@@ -43,6 +44,8 @@ extension Device {
 }
 
 extension Relay {
+  // eliminate the "optional" problem
+  // entries not needed here for Bool attributes
   public var wrappedUsage: String{
     get { usage ?? "" }
     set { usage = newValue }}

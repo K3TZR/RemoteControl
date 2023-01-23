@@ -42,7 +42,11 @@ struct ParentView: View {
         DetailView(device: selectedDevice!)
 
       } else {
-        EmptyView()
+        VStack {
+          Spacer()
+          Text("Select a Device")
+          Spacer()
+        }
       }
     }
     .toolbar {
@@ -54,27 +58,28 @@ struct ParentView: View {
     }
   }
   
-
   func deleteDevice(_ device: Device) {
     selectedDevice = nil
     moc.delete(device)
     try? moc.save()
   }
+  
   func addNewDevice() {
     let newDevice = Device(context: moc)
     newDevice.id = UUID()
     newDevice.title = "NewDevice"
     newDevice.name = "NewName"
     
-//    var relays = [Relay]()
-//    for i in 1...8 {
-//      let newRelay = Relay(context: moc)
-//      newRelay.number = Int16(i)
-//      newRelay.usage = "---"
-//      newRelay.locked = false
-//      relays.append(newRelay)
-//    }
-//    newDevice.relayArray = relays
+    var relays = [Relay]()
+    for i in 1...8 {
+      let newRelay = Relay(context: moc)
+      newRelay.number = Int16(i)
+      newRelay.usage = "---"
+      newRelay.locked = false
+      newRelay.device = newDevice
+      relays.append(newRelay)
+    }
+    newDevice.relayArray = relays
     
     try? moc.save()
   }
