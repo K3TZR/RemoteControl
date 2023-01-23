@@ -7,19 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F59D49C297D68D4003B4512 /* Device+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D49A297D68D4003B4512 /* Device+CoreDataClass.swift */; };
+		9F59D49D297D68D4003B4512 /* Device+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D49B297D68D4003B4512 /* Device+CoreDataProperties.swift */; };
+		9F59D49F297D7F74003B4512 /* DeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D49E297D7F74003B4512 /* DeviceExtensions.swift */; };
+		9F59D4A2297D86EF003B4512 /* Relay+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4A0297D86EF003B4512 /* Relay+CoreDataClass.swift */; };
+		9F59D4A3297D86EF003B4512 /* Relay+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4A1297D86EF003B4512 /* Relay+CoreDataProperties.swift */; };
 		9FC71208297C66E200920CA1 /* RemoteControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC71207297C66E200920CA1 /* RemoteControlApp.swift */; };
-		9FC7120A297C66E200920CA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC71209297C66E200920CA1 /* ContentView.swift */; };
+		9FC7120A297C66E200920CA1 /* ParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC71209297C66E200920CA1 /* ParentView.swift */; };
 		9FC7120C297C66E300920CA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FC7120B297C66E300920CA1 /* Assets.xcassets */; };
 		9FC7120F297C66E300920CA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FC7120E297C66E300920CA1 /* Preview Assets.xcassets */; };
+		9FC71218297C670000920CA1 /* Devices.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FC71216297C670000920CA1 /* Devices.xcdatamodeld */; };
+		9FC7121A297C6ADC00920CA1 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC71219297C6ADC00920CA1 /* DataController.swift */; };
+		9FC7121C297C716800920CA1 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC7121B297C716800920CA1 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F59D49A297D68D4003B4512 /* Device+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Device+CoreDataClass.swift"; path = "RemoteControl/Device+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9F59D49B297D68D4003B4512 /* Device+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Device+CoreDataProperties.swift"; path = "RemoteControl/Device+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9F59D49E297D7F74003B4512 /* DeviceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceExtensions.swift; sourceTree = "<group>"; };
+		9F59D4A0297D86EF003B4512 /* Relay+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Relay+CoreDataClass.swift"; path = "RemoteControl/Relay+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9F59D4A1297D86EF003B4512 /* Relay+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Relay+CoreDataProperties.swift"; path = "RemoteControl/Relay+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9FC71204297C66E200920CA1 /* RemoteControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemoteControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FC71207297C66E200920CA1 /* RemoteControlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteControlApp.swift; sourceTree = "<group>"; };
-		9FC71209297C66E200920CA1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9FC71209297C66E200920CA1 /* ParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentView.swift; sourceTree = "<group>"; };
 		9FC7120B297C66E300920CA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9FC7120E297C66E300920CA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9FC71210297C66E300920CA1 /* RemoteControl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RemoteControl.entitlements; sourceTree = "<group>"; };
+		9FC71217297C670000920CA1 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		9FC71219297C6ADC00920CA1 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		9FC7121B297C716800920CA1 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +52,10 @@
 		9FC711FB297C66E200920CA1 = {
 			isa = PBXGroup;
 			children = (
+				9F59D4A0297D86EF003B4512 /* Relay+CoreDataClass.swift */,
+				9F59D4A1297D86EF003B4512 /* Relay+CoreDataProperties.swift */,
+				9F59D49A297D68D4003B4512 /* Device+CoreDataClass.swift */,
+				9F59D49B297D68D4003B4512 /* Device+CoreDataProperties.swift */,
 				9FC71206297C66E200920CA1 /* RemoteControl */,
 				9FC71205297C66E200920CA1 /* Products */,
 			);
@@ -53,10 +73,14 @@
 			isa = PBXGroup;
 			children = (
 				9FC71207297C66E200920CA1 /* RemoteControlApp.swift */,
-				9FC71209297C66E200920CA1 /* ContentView.swift */,
+				9FC71209297C66E200920CA1 /* ParentView.swift */,
+				9FC71216297C670000920CA1 /* Devices.xcdatamodeld */,
 				9FC7120B297C66E300920CA1 /* Assets.xcassets */,
 				9FC71210297C66E300920CA1 /* RemoteControl.entitlements */,
 				9FC7120D297C66E300920CA1 /* Preview Content */,
+				9FC71219297C6ADC00920CA1 /* DataController.swift */,
+				9FC7121B297C716800920CA1 /* DetailView.swift */,
+				9F59D49E297D7F74003B4512 /* DeviceExtensions.swift */,
 			);
 			path = RemoteControl;
 			sourceTree = "<group>";
@@ -139,7 +163,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FC7120A297C66E200920CA1 /* ContentView.swift in Sources */,
+				9FC71218297C670000920CA1 /* Devices.xcdatamodeld in Sources */,
+				9F59D4A3297D86EF003B4512 /* Relay+CoreDataProperties.swift in Sources */,
+				9F59D4A2297D86EF003B4512 /* Relay+CoreDataClass.swift in Sources */,
+				9F59D49F297D7F74003B4512 /* DeviceExtensions.swift in Sources */,
+				9FC7121A297C6ADC00920CA1 /* DataController.swift in Sources */,
+				9FC7121C297C716800920CA1 /* DetailView.swift in Sources */,
+				9F59D49C297D68D4003B4512 /* Device+CoreDataClass.swift in Sources */,
+				9F59D49D297D68D4003B4512 /* Device+CoreDataProperties.swift in Sources */,
+				9FC7120A297C66E200920CA1 /* ParentView.swift in Sources */,
 				9FC71208297C66E200920CA1 /* RemoteControlApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +368,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9FC71216297C670000920CA1 /* Devices.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9FC71217297C670000920CA1 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 9FC71217297C670000920CA1 /* DataModel.xcdatamodel */;
+			path = Devices.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9FC711FC297C66E200920CA1 /* Project object */;
 }
