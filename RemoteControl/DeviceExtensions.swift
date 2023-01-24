@@ -88,6 +88,9 @@ extension OnStep {
   public var wrappedDelay: Int {
     get { Int(delay) }
     set { delay = Int16(newValue) }}
+  public var wrappedStepNumber: Int {
+    get { Int(stepNumber) }
+    set { stepNumber = Int16(newValue) }}
 }
 
 extension OffStep {
@@ -99,5 +102,8 @@ extension OffStep {
   public var wrappedDelay: Int {
     get { Int(delay) }
     set { delay = Int16(newValue) }}
+  public var wrappedStepNumber: Int {
+    get { Int(stepNumber) }
+    set { stepNumber = Int16(newValue) }}
 }
 

@@ -10,8 +10,8 @@ import SwiftUI
 struct DetailView: View {
   @ObservedObject var device: Device
   
-  @Environment(\.managedObjectContext) var moc
-  
+  @EnvironmentObject var dataController : DataController
+
   var body: some View {
     VStack {
       DeviceParamsView(device: device)
@@ -23,8 +23,9 @@ struct DetailView: View {
       CyclesView(device: device)
       Divider().background(Color(.blue))
       
-      Button("Save") { try? moc.save() }
+      Button("Save Changes") { dataController.save() }.disabled(!device.hasChanges)
     }
+    .onDisappear { print("DetailView onDisappear") }
   }
 }
 
@@ -79,7 +80,7 @@ private struct RelaysView: View {
           Text("Lock")
         }
         ForEach($device.relayArray, id: \.self) { $relay in
-          if (1...4).contains(relay.wrappedNumber) {
+          if relay.wrappedNumber % 2 != 0 {
             GridRow {
               Text("\(relay.wrappedNumber).")
               TextField("", text: $relay.wrappedUsage)
@@ -96,7 +97,7 @@ private struct RelaysView: View {
           Text("Lock")
         }
         ForEach($device.relayArray, id: \.self) { $relay in
-          if (5...8).contains(relay.wrappedNumber) {
+          if relay.wrappedNumber % 2 == 0 {
             GridRow {
               Text("\(relay.wrappedNumber).")
               TextField("", text: $relay.wrappedUsage)
@@ -112,62 +113,85 @@ private struct RelaysView: View {
 private struct CyclesView: View {
   @ObservedObject var device: Device
   
+  let relayChoices = [1,2,3,4,5,6,7,8]
+  
   var body: some View {
     HStack(spacing: 250) {
       Text("Cycle ON")
       Text("Cycle OFF")
     }
-    HStack(spacing: 100) {
+    HStack(spacing: 80) {
       
       Grid (verticalSpacing: 5) {
         GridRow {
-          Text("#")
           Text("Enabled")
+          Text("Step")
+          Text("Relay")
           Text("Value")
           Text("Delay")
         }
         ForEach($device.onStepsArray, id: \.self) { $step in
           GridRow {
-            Text("\(step.wrappedRelayNumber).")
             Toggle("", isOn: $step.enabled)
-            Toggle("", isOn: $step.newValue)
-            TextField("", value: $step.wrappedDelay, format: .number)
-              .multilineTextAlignment(.trailing)
-              .frame(width: 75)
+            Group {
+              Picker("", selection: $step.wrappedStepNumber) {
+                ForEach(relayChoices, id: \.self) {
+                  Text(String($0)).tag($0)
+                }
+              }
+              .labelsHidden()
+              .frame(width: 50)
+              
+              Text(String(step.relayNumber) + ".")
+              Toggle("", isOn: $step.newValue)
+              TextField("", value: $step.wrappedDelay, format: .number)
+                .multilineTextAlignment(.trailing)
+                .frame(width: 75)
+            }.disabled(!step.enabled)
           }
         }
-      }.frame(width: 250)
+      }.frame(width: 240)
       
       Grid (verticalSpacing: 5) {
         GridRow {
-          Text("#")
           Text("Enabled")
+          Text("Step")
+          Text("Relay")
           Text("Value")
           Text("Delay")
         }
         ForEach($device.offStepsArray, id: \.self) { $step in
           GridRow {
-            Text("\(step.wrappedRelayNumber).")
             Toggle("", isOn: $step.enabled)
-            Toggle("", isOn: $step.newValue)
-            TextField("", value: $step.wrappedDelay, format: .number)
-              .multilineTextAlignment(.trailing)
-              .frame(width: 75)
+            Group {
+              Picker("", selection: $step.wrappedStepNumber) {
+                ForEach(relayChoices, id: \.self) {
+                  Text(String($0)).tag($0)
+                }
+              }
+              .labelsHidden()
+              .frame(width: 50)
+              
+              Text(String(step.relayNumber) + ".")
+              Toggle("", isOn: $step.newValue)
+              TextField("", value: $step.wrappedDelay, format: .number)
+                .multilineTextAlignment(.trailing)
+                .frame(width: 75)
+            }.disabled(!step.enabled)
           }
         }
-      }.frame(width: 250)
+      }.frame(width: 240)
     }
   }
 }
 
 struct DeviceView_Previews: PreviewProvider {
-  static var dataController = DataController.preview
+  static var dataController = DataController()
   
   static var previews: some View {
-      let device = Device(context: dataController.container.viewContext)
-      
-      return DetailView(device: device)
-          .environment(\.managedObjectContext, dataController.container.viewContext)
-          .environmentObject(dataController)
+    
+    DetailView(device: dataController.addDevice(save: false))
+      .environment(\.managedObjectContext, dataController.container.viewContext)
+      .environmentObject(dataController)
   }
 }

@@ -2,7 +2,7 @@
 //  OffStep+CoreDataProperties.swift
 //  RemoteControl
 //
-//  Created by Douglas Adams on 1/23/23.
+//  Created by Douglas Adams on 1/24/23.
 //
 //
 
@@ -20,6 +20,7 @@ extension OffStep {
     @NSManaged public var enabled: Bool
     @NSManaged public var newValue: Bool
     @NSManaged public var relayNumber: Int16
+    @NSManaged public var stepNumber: Int16
     @NSManaged public var device: Device?
 
 }

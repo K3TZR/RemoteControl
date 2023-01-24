@@ -17,6 +17,7 @@
         <attribute name="enabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="newValue" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="relayNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="stepNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Device" inverseName="offSteps" inverseEntity="Device"/>
     </entity>
     <entity name="OnStep" representedClassName="OnStep" syncable="YES">
@@ -24,6 +25,7 @@
         <attribute name="enabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="newValue" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="relayNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="stepNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Device" inverseName="onSteps" inverseEntity="Device"/>
     </entity>
     <entity name="Relay" representedClassName="Relay" syncable="YES">

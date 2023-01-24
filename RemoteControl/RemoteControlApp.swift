@@ -5,18 +5,12 @@
 //  Created by Douglas Adams on 1/21/23.
 //
 
-import CoreData
 import SwiftUI
 
 @main
 struct RemoteControlApp: App {
   
-  @StateObject var dataController : DataController
-  
-  init() {
-    let dataController = DataController()
-    _dataController = StateObject(wrappedValue: dataController)
-  }
+  @StateObject var dataController = DataController()
   
   var body: some Scene {
     WindowGroup {

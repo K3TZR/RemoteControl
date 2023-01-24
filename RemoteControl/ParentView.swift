@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct ParentView: View {
-  @EnvironmentObject var dataController : DataController
 
-  @Environment(\.managedObjectContext) var moc
-  @FetchRequest(sortDescriptors: [ SortDescriptor(\.name),]) var devices: FetchedResults<Device>
-  
   @State var selectedDevice: Device? = nil
 
+  @EnvironmentObject var dataController : DataController
+  @FetchRequest(sortDescriptors: [ SortDescriptor(\.name),]) var devices: FetchedResults<Device>
+    
   var body: some View {
     NavigationSplitView {
       List(devices, selection: $selectedDevice ) { device in
@@ -26,90 +25,58 @@ struct ParentView: View {
       VStack {
         HStack {
           Image(systemName: "plus.rectangle")
+          // add a new Device
             .onTapGesture {
-              addNewDevice()
+              _ = dataController.addDevice()
             }
           Image(systemName: "minus.rectangle")
             .onTapGesture {
-              if selectedDevice != nil {
-                deleteDevice(selectedDevice!)
-              }
+              delete()
             }
-
+          
         }.font(.title2)
       }
     } detail: {
       if selectedDevice != nil {
+        // show the details if a device is selected
         DetailView(device: selectedDevice!)
-
+        
       } else {
+        // ask the user to select a device
         VStack {
           Spacer()
-          Text("Select a Device")
+          if devices.count == 0 {
+            Text("ADD one or more Devices").font(.title)
+          } else {
+            Text("Select a Device").font(.title)
+          }
           Spacer()
         }
       }
     }
-    .toolbar {
-      ToolbarItem(placement: .navigation) {
-        Button("Add Sample Data") {
-          dataController.createSampleData()
-        }
-      }
+    .onDeleteCommand{
+      delete()
     }
     .padding()
   }
   
-  func deleteDevice(_ device: Device) {
-    selectedDevice = nil
-    moc.delete(device)
-    try? moc.save()
-  }
-  
-  func addNewDevice() {
-    let newDevice = Device(context: moc)
-    newDevice.id = UUID()
-    newDevice.title = "NewDevice"
-    newDevice.name = "NewName"
-    
-    var relays = [Relay]()
-    for i in 1...8 {
-      let newRelay = Relay(context: moc)
-      newRelay.number = Int16(i)
-      newRelay.usage = "---"
-      newRelay.locked = false
-      newRelay.device = newDevice
-      relays.append(newRelay)
+  func delete() {
+    // delete the selected Device
+    if selectedDevice != nil {
+      let device = selectedDevice!
+      selectedDevice = nil
+      dataController.delete(device)
     }
-    
-    let onSteps = [OnStep]()
-    for i in 1...8 {
-      let newStep = OnStep(context: moc)
-      newStep.enabled = false
-      newStep.relayNumber = Int16(i)
-      newStep.newValue = false
-      newStep.delay = Int16(2)
-    }
-
-    let offSteps = [OffStep]()
-    for i in 1...8 {
-      let newStep = OffStep(context: moc)
-      newStep.enabled = false
-      newStep.relayNumber = Int16(i)
-      newStep.newValue = false
-      newStep.delay = Int16(2)
-    }
-
-    newDevice.relayArray = relays
-    newDevice.onStepsArray = onSteps
-    newDevice.offStepsArray = offSteps
-
-    try? moc.save()
   }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ParentView_Previews: PreviewProvider {
+  static var dataController = DataController()
+  
   static var previews: some View {
-    ParentView()
+    
+    return ParentView()
+      .environment(\.managedObjectContext, dataController.container.viewContext)
+      .environmentObject(dataController)
   }
 }
