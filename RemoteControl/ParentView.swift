@@ -13,7 +13,7 @@ struct ParentView: View {
   @Environment(\.managedObjectContext) var moc
   @FetchRequest(sortDescriptors: [ SortDescriptor(\.name),]) var devices: FetchedResults<Device>
   
-  @State var selectedDevice: Device?
+  @State var selectedDevice: Device? = nil
 
   var body: some View {
     NavigationSplitView {
@@ -29,10 +29,11 @@ struct ParentView: View {
             .onTapGesture {
               addNewDevice()
             }
-          Image(systemName: "minus.rectangle").disabled(selectedDevice == nil)
-            .disabled(selectedDevice == nil)
+          Image(systemName: "minus.rectangle")
             .onTapGesture {
-              deleteDevice(selectedDevice!)
+              if selectedDevice != nil {
+                deleteDevice(selectedDevice!)
+              }
             }
 
         }.font(.title2)
@@ -56,6 +57,7 @@ struct ParentView: View {
         }
       }
     }
+    .padding()
   }
   
   func deleteDevice(_ device: Device) {
@@ -79,8 +81,29 @@ struct ParentView: View {
       newRelay.device = newDevice
       relays.append(newRelay)
     }
-    newDevice.relayArray = relays
     
+    let onSteps = [OnStep]()
+    for i in 1...8 {
+      let newStep = OnStep(context: moc)
+      newStep.enabled = false
+      newStep.relayNumber = Int16(i)
+      newStep.newValue = false
+      newStep.delay = Int16(2)
+    }
+
+    let offSteps = [OffStep]()
+    for i in 1...8 {
+      let newStep = OffStep(context: moc)
+      newStep.enabled = false
+      newStep.relayNumber = Int16(i)
+      newStep.newValue = false
+      newStep.delay = Int16(2)
+    }
+
+    newDevice.relayArray = relays
+    newDevice.onStepsArray = onSteps
+    newDevice.offStepsArray = offSteps
+
     try? moc.save()
   }
 }

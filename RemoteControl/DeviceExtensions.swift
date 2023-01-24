@@ -30,6 +30,7 @@ extension Device {
 
 extension Device {
   // convert from NSSet <--> Array
+  // ----- RELAYS -----
   public var relayArray: [Relay] {
     get {
       let set = relays as? Set<Relay> ?? []
@@ -39,6 +40,30 @@ extension Device {
     }
     set {
       relays = NSSet(array: newValue)
+    }
+  }
+  // ----- ON STEPS -----
+  public var onStepsArray: [OnStep] {
+    get {
+      let set = onSteps as? Set<OnStep> ?? []
+      return set.sorted {
+        $0.relayNumber < $1.relayNumber
+      }
+    }
+    set {
+      onSteps = NSSet(array: newValue)
+    }
+  }
+  // ----- OFF STEPS -----
+  public var offStepsArray: [OffStep] {
+    get {
+      let set = offSteps as? Set<OffStep> ?? []
+      return set.sorted {
+        $0.relayNumber < $1.relayNumber
+      }
+    }
+    set {
+      offSteps = NSSet(array: newValue)
     }
   }
 }
@@ -53,3 +78,26 @@ extension Relay {
     get { Int(number) }
     set { number = Int16(newValue) }}
 }
+
+extension OnStep {
+  // eliminate the "optional" problem
+  // entries not needed here for Bool attributes
+  public var wrappedRelayNumber: Int {
+    get { Int(relayNumber) }
+    set { relayNumber = Int16(newValue) }}
+  public var wrappedDelay: Int {
+    get { Int(delay) }
+    set { delay = Int16(newValue) }}
+}
+
+extension OffStep {
+  // eliminate the "optional" problem
+  // entries not needed here for Bool attributes
+  public var wrappedRelayNumber: Int {
+    get { Int(relayNumber) }
+    set { relayNumber = Int16(newValue) }}
+  public var wrappedDelay: Int {
+    get { Int(delay) }
+    set { delay = Int16(newValue) }}
+}
+

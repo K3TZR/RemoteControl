@@ -24,122 +24,36 @@ class DataController: ObservableObject {
     
     let viewContext = container.viewContext
     
-    let device1 = Device(context: viewContext)
-    device1.id = UUID()
-    device1.name = "DIN4 Relay"
-    device1.title = "K3TZR Relay Control"
-    device1.ipAddress = "192.168.1.220"
-    device1.user = "admin"
-    device1.password = "ruwn1viwn_RUF_zolt"
-    device1.showEmptyNames = true
-
-    let device2 = Device(context: viewContext)
-    device2.id = UUID()
-    device2.name = "Web Power Switch"
-    device2.title = "K3TZR Outlet Control"
-    device2.ipAddress = "192.168.1.221"
-    device2.user = "admin"
-    device2.password = "8PsCVECFUeyg3Atcq3ZB"
-    device2.showEmptyNames = true
-
-    let relay11 = Relay(context: viewContext)
-    relay11.usage = "Main AC Power"
-    relay11.locked = true
-    relay11.device = device1
-    relay11.number = 1
-
-    let relay12 = Relay(context: viewContext)
-    relay12.usage = "Radio Power Supply"
-    relay12.locked = false
-    relay12.device = device1
-    relay12.number = 2
-
-    let relay13 = Relay(context: viewContext)
-    relay13.usage = "---"
-    relay13.locked = false
-    relay13.device = device1
-    relay13.number = 3
-
-    let relay14 = Relay(context: viewContext)
-    relay14.usage = "---"
-    relay14.locked = false
-    relay14.device = device1
-    relay14.number = 4
-
-    let relay15 = Relay(context: viewContext)
-    relay15.usage = "Ethernet Switch"
-    relay15.locked = false
-    relay15.device = device1
-    relay15.number = 5
-
-    let relay16 = Relay(context: viewContext)
-    relay16.usage = "---"
-    relay16.locked = false
-    relay16.device = device1
-    relay16.number = 6
-
-    let relay17 = Relay(context: viewContext)
-    relay17.usage = "---"
-    relay17.locked = false
-    relay17.device = device1
-    relay17.number = 7
-
-    let relay18 = Relay(context: viewContext)
-    relay18.usage = "Remote ON"
-    relay18.locked = true
-    relay18.device = device1
-    relay18.number = 8
-
-    // ---------------------------------------------
+    // ----- DIN Relay 4 Device -----
     
-    let relay21 = Relay(context: viewContext)
-    relay21.usage = "Main AC Power"
-    relay21.locked = true
-    relay21.device = device2
-    relay21.number = 1
+    let dinRelay = Device(context: viewContext)
+    dinRelay.id = UUID()
+    dinRelay.name = "DIN4 Relay"
+    dinRelay.title = "K3TZR Relay Control"
+    dinRelay.ipAddress = "192.168.1.220"
+    dinRelay.user = "admin"
+    dinRelay.password = "ruwn1viwn_RUF_zolt"
+    dinRelay.showEmptyNames = true
 
-    let relay22 = Relay(context: viewContext)
-    relay22.usage = "---"
-    relay22.locked = false
-    relay22.device = device2
-    relay22.number = 2
+    createRelays(dinRelay, viewContext)
+    createOnSteps(dinRelay, viewContext)
+    createOffSteps(dinRelay, viewContext)
 
-    let relay23 = Relay(context: viewContext)
-    relay23.usage = "Rotator Control"
-    relay23.locked = false
-    relay23.device = device2
-    relay23.number = 3
 
-    let relay24 = Relay(context: viewContext)
-    relay24.usage = "Antenna Switch"
-    relay24.locked = false
-    relay24.device = device2
-    relay24.number = 4
+    // ----- Web Power Switch Pro Device -----
+    
+    let powerSwitch = Device(context: viewContext)
+    powerSwitch.id = UUID()
+    powerSwitch.name = "Web Power Switch"
+    powerSwitch.title = "K3TZR Outlet Control"
+    powerSwitch.ipAddress = "192.168.1.221"
+    powerSwitch.user = "admin"
+    powerSwitch.password = "8PsCVECFUeyg3Atcq3ZB"
+    powerSwitch.showEmptyNames = true
 
-    let relay25 = Relay(context: viewContext)
-    relay25.usage = "---"
-    relay25.locked = false
-    relay25.device = device2
-    relay25.number = 5
-
-    let relay26 = Relay(context: viewContext)
-    relay26.usage = "WiFi Router"
-    relay26.locked = false
-    relay26.device = device2
-    relay26.number = 6
-
-    let relay27 = Relay(context: viewContext)
-    relay27.usage = "Radio Power Supply"
-    relay27.locked = false
-    relay27.device = device2
-    relay27.number = 7
-
-    let relay28 = Relay(context: viewContext)
-    relay28.usage = "Remote ON"
-    relay28.locked = false
-    relay28.device = device2
-    relay28.number = 8
-
+    createRelays(powerSwitch, viewContext)
+    createOnSteps(powerSwitch, viewContext)
+    createOffSteps(powerSwitch, viewContext)
 
     do {
       try viewContext.save()
@@ -171,12 +85,46 @@ class DataController: ObservableObject {
     _ = try? container.viewContext.execute(batchDeleteRequest)
   }
   
-//  static var preview : DataController = {
-//    let dataController = DataController()
-//    let viewContext = dataController.container.viewContext
-//
-//    dataController.createSampleData()
-//    return dataController
-//  }()
+  func createRelays(_ device: Device, _ context: NSManagedObjectContext) {
+    for i in 1...8 {
+      let relay = Relay(context: context)
+      relay.usage = "---"
+      relay.locked = false
+      relay.device = device
+      relay.number = Int16(i)
+    }
+  }
+  
+  func createOnSteps(_ device: Device, _ context: NSManagedObjectContext)  {
+    for i in 1...8 {
+      let step = OnStep(context: context)
+      step.enabled = false
+      step.relayNumber = Int16(i)
+      step.newValue = false
+      step.delay = Int16(2)
+      step.device = device
+    }
+  }
+
+  func createOffSteps(_ device: Device, _ context: NSManagedObjectContext)  {
+    for i in 1...8 {
+      let step = OffStep(context: context)
+      step.enabled = false
+      step.relayNumber = Int16(i)
+      step.newValue = false
+      step.delay = Int16(2)
+      step.device = device
+    }
+  }
+
+  
+  
+  static var preview : DataController = {
+    let dataController = DataController()
+    let viewContext = dataController.container.viewContext
+
+    dataController.createSampleData()
+    return dataController
+  }()
   
 }

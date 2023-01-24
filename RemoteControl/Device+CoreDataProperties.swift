@@ -24,6 +24,8 @@ extension Device {
     @NSManaged public var title: String?
     @NSManaged public var user: String?
     @NSManaged public var relays: NSSet?
+    @NSManaged public var onSteps: NSSet?
+    @NSManaged public var offSteps: NSSet?
 
 }
 
@@ -41,6 +43,40 @@ extension Device {
 
     @objc(removeRelays:)
     @NSManaged public func removeFromRelays(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for onSteps
+extension Device {
+
+    @objc(addOnStepsObject:)
+    @NSManaged public func addToOnSteps(_ value: OnStep)
+
+    @objc(removeOnStepsObject:)
+    @NSManaged public func removeFromOnSteps(_ value: OnStep)
+
+    @objc(addOnSteps:)
+    @NSManaged public func addToOnSteps(_ values: NSSet)
+
+    @objc(removeOnSteps:)
+    @NSManaged public func removeFromOnSteps(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for offSteps
+extension Device {
+
+    @objc(addOffStepsObject:)
+    @NSManaged public func addToOffSteps(_ value: OffStep)
+
+    @objc(removeOffStepsObject:)
+    @NSManaged public func removeFromOffSteps(_ value: OffStep)
+
+    @objc(addOffSteps:)
+    @NSManaged public func addToOffSteps(_ values: NSSet)
+
+    @objc(removeOffSteps:)
+    @NSManaged public func removeFromOffSteps(_ values: NSSet)
 
 }
 

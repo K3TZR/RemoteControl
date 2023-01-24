@@ -20,10 +20,9 @@ struct DetailView: View {
       RelaysView(device: device)
       Divider().background(Color(.blue))
 
-//      CyclesView()
-//      Divider().background(Color(.blue))
+      CyclesView(device: device)
+      Divider().background(Color(.blue))
       
-      Spacer()
       Button("Save") { try? moc.save() }
     }
   }
@@ -51,6 +50,10 @@ private struct DeviceParamsView: View {
       }
       Grid(alignment: .leading, horizontalSpacing: 10, verticalSpacing: 10) {
         GridRow {
+          Toggle("Show empty names", isOn: $device.showEmptyNames)
+            .gridCellColumns(2)
+        }
+        GridRow {
           Text("IP Address")
           TextField("", text: $device.wrappedIpAddress)
         }
@@ -67,55 +70,39 @@ private struct RelaysView: View {
   @ObservedObject var device: Device
 
   var body: some View {
-    HStack(spacing: 80) {
-      Text("Relay Names")
-      Toggle("Show empty Relay names", isOn: $device.showEmptyNames)
-    }
-    Spacer()
     HStack(spacing: 100) {
-      
-      Grid {
+
+      Grid (verticalSpacing: 5) {
         GridRow {
-          Text("\(device.relayArray[0].wrappedNumber).")
-          TextField("", text: $device.relayArray[0].wrappedUsage)
-          Toggle("Locked", isOn: $device.relayArray[0].locked)
+          Text("#")
+          Text("Usage")
+          Text("Lock")
         }
-        GridRow {
-          Text("\(device.relayArray[1].wrappedNumber).")
-          TextField("", text: $device.relayArray[1].wrappedUsage)
-          Toggle("Locked", isOn: $device.relayArray[1].locked)
-        }
-        GridRow {
-          Text("\(device.relayArray[2].wrappedNumber).")
-          TextField("", text: $device.relayArray[2].wrappedUsage)
-          Toggle("Locked", isOn: $device.relayArray[2].locked)
-        }
-        GridRow {
-          Text("\(device.relayArray[3].wrappedNumber).")
-          TextField("", text: $device.relayArray[3].wrappedUsage)
-          Toggle("Locked", isOn: $device.relayArray[3].locked)
+        ForEach($device.relayArray, id: \.self) { $relay in
+          if (1...4).contains(relay.wrappedNumber) {
+            GridRow {
+              Text("\(relay.wrappedNumber).")
+              TextField("", text: $relay.wrappedUsage)
+              Toggle("", isOn: $relay.locked)
+            }
+          }
         }
       }.frame(width: 250)
-      Grid {
+
+      Grid (verticalSpacing: 5) {
         GridRow {
-          Text("\(device.relayArray[4].wrappedNumber).")
-          TextField("", text: $device.relayArray[4].wrappedUsage)
-          Toggle("Locked", isOn: $device.relayArray[4].locked)
+          Text("#")
+          Text("Usage")
+          Text("Lock")
         }
-        GridRow {
-          Text("\(device.relayArray[5].wrappedNumber).")
-          TextField("", text: $device.relayArray[5].wrappedUsage)
-          Toggle("Locked", isOn: $device.relayArray[5].locked)
-        }
-        GridRow {
-          Text("\(device.relayArray[6].wrappedNumber).")
-          TextField("", text: $device.relayArray[6].wrappedUsage)
-          Toggle("Locked", isOn: $device.relayArray[6].locked)
-        }
-        GridRow {
-          Text("\(device.relayArray[7].wrappedNumber).")
-          TextField("", text: $device.relayArray[7].wrappedUsage)
-          Toggle("Locked", isOn: $device.relayArray[7].locked)
+        ForEach($device.relayArray, id: \.self) { $relay in
+          if (5...8).contains(relay.wrappedNumber) {
+            GridRow {
+              Text("\(relay.wrappedNumber).")
+              TextField("", text: $relay.wrappedUsage)
+              Toggle("", isOn: $relay.locked)
+            }
+          }
         }
       }.frame(width: 250)
     }
@@ -123,18 +110,64 @@ private struct RelaysView: View {
 }
 
 private struct CyclesView: View {
+  @ObservedObject var device: Device
   
   var body: some View {
-    VStack {
-      Spacer()
-      Text("Cycles View")
-      Spacer()
+    HStack(spacing: 250) {
+      Text("Cycle ON")
+      Text("Cycle OFF")
+    }
+    HStack(spacing: 100) {
+      
+      Grid (verticalSpacing: 5) {
+        GridRow {
+          Text("#")
+          Text("Enabled")
+          Text("Value")
+          Text("Delay")
+        }
+        ForEach($device.onStepsArray, id: \.self) { $step in
+          GridRow {
+            Text("\(step.wrappedRelayNumber).")
+            Toggle("", isOn: $step.enabled)
+            Toggle("", isOn: $step.newValue)
+            TextField("", value: $step.wrappedDelay, format: .number)
+              .multilineTextAlignment(.trailing)
+              .frame(width: 75)
+          }
+        }
+      }.frame(width: 250)
+      
+      Grid (verticalSpacing: 5) {
+        GridRow {
+          Text("#")
+          Text("Enabled")
+          Text("Value")
+          Text("Delay")
+        }
+        ForEach($device.offStepsArray, id: \.self) { $step in
+          GridRow {
+            Text("\(step.wrappedRelayNumber).")
+            Toggle("", isOn: $step.enabled)
+            Toggle("", isOn: $step.newValue)
+            TextField("", value: $step.wrappedDelay, format: .number)
+              .multilineTextAlignment(.trailing)
+              .frame(width: 75)
+          }
+        }
+      }.frame(width: 250)
     }
   }
 }
 
-//struct DeviceView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    DeviceView(selectedDevice: Device() )
-//  }
-//}
+struct DeviceView_Previews: PreviewProvider {
+  static var dataController = DataController.preview
+  
+  static var previews: some View {
+      let device = Device(context: dataController.container.viewContext)
+      
+      return DetailView(device: device)
+          .environment(\.managedObjectContext, dataController.container.viewContext)
+          .environmentObject(dataController)
+  }
+}

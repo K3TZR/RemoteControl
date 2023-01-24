@@ -12,6 +12,10 @@
 		9F59D49F297D7F74003B4512 /* DeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D49E297D7F74003B4512 /* DeviceExtensions.swift */; };
 		9F59D4A2297D86EF003B4512 /* Relay+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4A0297D86EF003B4512 /* Relay+CoreDataClass.swift */; };
 		9F59D4A3297D86EF003B4512 /* Relay+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4A1297D86EF003B4512 /* Relay+CoreDataProperties.swift */; };
+		9F59D4A6297F7A70003B4512 /* OnStep+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4A4297F7A70003B4512 /* OnStep+CoreDataClass.swift */; };
+		9F59D4A7297F7A70003B4512 /* OnStep+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4A5297F7A70003B4512 /* OnStep+CoreDataProperties.swift */; };
+		9F59D4AA297F7D0A003B4512 /* OffStep+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4A8297F7D0A003B4512 /* OffStep+CoreDataClass.swift */; };
+		9F59D4AB297F7D0A003B4512 /* OffStep+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4A9297F7D0A003B4512 /* OffStep+CoreDataProperties.swift */; };
 		9FC71208297C66E200920CA1 /* RemoteControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC71207297C66E200920CA1 /* RemoteControlApp.swift */; };
 		9FC7120A297C66E200920CA1 /* ParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC71209297C66E200920CA1 /* ParentView.swift */; };
 		9FC7120C297C66E300920CA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FC7120B297C66E300920CA1 /* Assets.xcassets */; };
@@ -27,6 +31,10 @@
 		9F59D49E297D7F74003B4512 /* DeviceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceExtensions.swift; sourceTree = "<group>"; };
 		9F59D4A0297D86EF003B4512 /* Relay+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Relay+CoreDataClass.swift"; path = "RemoteControl/Relay+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9F59D4A1297D86EF003B4512 /* Relay+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Relay+CoreDataProperties.swift"; path = "RemoteControl/Relay+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9F59D4A4297F7A70003B4512 /* OnStep+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OnStep+CoreDataClass.swift"; path = "RemoteControl/OnStep+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9F59D4A5297F7A70003B4512 /* OnStep+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OnStep+CoreDataProperties.swift"; path = "RemoteControl/OnStep+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9F59D4A8297F7D0A003B4512 /* OffStep+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OffStep+CoreDataClass.swift"; path = "RemoteControl/OffStep+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9F59D4A9297F7D0A003B4512 /* OffStep+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OffStep+CoreDataProperties.swift"; path = "RemoteControl/OffStep+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9FC71204297C66E200920CA1 /* RemoteControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemoteControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FC71207297C66E200920CA1 /* RemoteControlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteControlApp.swift; sourceTree = "<group>"; };
 		9FC71209297C66E200920CA1 /* ParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentView.swift; sourceTree = "<group>"; };
@@ -52,6 +60,10 @@
 		9FC711FB297C66E200920CA1 = {
 			isa = PBXGroup;
 			children = (
+				9F59D4A8297F7D0A003B4512 /* OffStep+CoreDataClass.swift */,
+				9F59D4A9297F7D0A003B4512 /* OffStep+CoreDataProperties.swift */,
+				9F59D4A4297F7A70003B4512 /* OnStep+CoreDataClass.swift */,
+				9F59D4A5297F7A70003B4512 /* OnStep+CoreDataProperties.swift */,
 				9F59D4A0297D86EF003B4512 /* Relay+CoreDataClass.swift */,
 				9F59D4A1297D86EF003B4512 /* Relay+CoreDataProperties.swift */,
 				9F59D49A297D68D4003B4512 /* Device+CoreDataClass.swift */,
@@ -164,12 +176,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FC71218297C670000920CA1 /* Devices.xcdatamodeld in Sources */,
+				9F59D4A6297F7A70003B4512 /* OnStep+CoreDataClass.swift in Sources */,
 				9F59D4A3297D86EF003B4512 /* Relay+CoreDataProperties.swift in Sources */,
 				9F59D4A2297D86EF003B4512 /* Relay+CoreDataClass.swift in Sources */,
+				9F59D4AA297F7D0A003B4512 /* OffStep+CoreDataClass.swift in Sources */,
 				9F59D49F297D7F74003B4512 /* DeviceExtensions.swift in Sources */,
 				9FC7121A297C6ADC00920CA1 /* DataController.swift in Sources */,
+				9F59D4A7297F7A70003B4512 /* OnStep+CoreDataProperties.swift in Sources */,
 				9FC7121C297C716800920CA1 /* DetailView.swift in Sources */,
 				9F59D49C297D68D4003B4512 /* Device+CoreDataClass.swift in Sources */,
+				9F59D4AB297F7D0A003B4512 /* OffStep+CoreDataProperties.swift in Sources */,
 				9F59D49D297D68D4003B4512 /* Device+CoreDataProperties.swift in Sources */,
 				9FC7120A297C66E200920CA1 /* ParentView.swift in Sources */,
 				9FC71208297C66E200920CA1 /* RemoteControlApp.swift in Sources */,
@@ -311,7 +327,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.RemoteControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -338,7 +354,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.RemoteControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
