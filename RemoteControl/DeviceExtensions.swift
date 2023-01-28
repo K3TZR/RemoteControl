@@ -47,7 +47,7 @@ extension Device {
     get {
       let set = onSteps as? Set<OnStep> ?? []
       return set.sorted {
-        $0.relayNumber < $1.relayNumber
+        $0.stepNumber < $1.stepNumber
       }
     }
     set {
@@ -59,7 +59,7 @@ extension Device {
     get {
       let set = offSteps as? Set<OffStep> ?? []
       return set.sorted {
-        $0.relayNumber < $1.relayNumber
+        $0.stepNumber < $1.stepNumber
       }
     }
     set {

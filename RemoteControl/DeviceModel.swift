@@ -71,7 +71,7 @@ class DeviceModel: ObservableObject {
 
   func toggleLock(_ device: Device, _ relayNumber: Int) {
     // rewrite the array to force a redraw in the DeviceControlView
-    var currentLocks = device.locksArray
+    let currentLocks = device.locksArray
     currentLocks[relayNumber - 1].value.toggle()
     device.locksArray = currentLocks
     save()

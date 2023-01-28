@@ -130,33 +130,32 @@ class RelaysModel: ObservableObject {
   }
   
   func relaysCycle(on: Bool) {
-    //    if let device = selectedDevice {
-    //      // prevent re-entrancy
-    //      guard !inProcess else { return }
-    //
-    //      let ipAddress = devices[deviceIndex].ipAddress
-    //      Task {
-    //        setInProcess(true)
-    //        if on {
-    //          for entry in devices[deviceIndex].cycleOnList {
-    //            if entry.enable && !relays[entry.index - 1].locked {
-    //              await setRemoteProperty(ipAddress, .status, at: entry.index - 1, to: entry.value ? "true" : "false")
-    //              relays[entry.index - 1].status = entry.value
-    //              try await Task.sleep(for: .seconds(entry.delay))
-    //            }
-    //          }
-    //        } else {
-    //          for entry in devices[deviceIndex].cycleOffList {
-    //            if entry.enable && !relays[entry.index - 1].locked {
-    //              await setRemoteProperty(ipAddress, .status, at: entry.index - 1, to: entry.value ? "true" : "false")
-    //              relays[entry.index - 1].status = entry.value
-    //              try await Task.sleep(for: .seconds(entry.delay))
-    //            }
-    //          }
-    //        }
-    //        setInProcess(false)
-    //      }
-    //    }
+    if let device = selectedDevice {
+      // prevent re-entrancy
+      guard !inProcess else { return }
+      
+      Task {
+        setInProcess(true)
+        if on {
+          for entry in device.onStepsArray {
+            if entry.enabled && !relays[entry.wrappedRelayNumber - 1].isLocked {
+              await setRemoteProperty(.isOn, at: entry.wrappedRelayNumber - 1, to: entry.newValue ? "true" : "false")
+              relays[entry.wrappedRelayNumber - 1].isOn = entry.newValue
+              try await Task.sleep(for: .seconds(entry.delay))
+            }
+          }
+        } else {
+          for entry in device.offStepsArray {
+            if entry.enabled && !relays[entry.wrappedRelayNumber - 1].isLocked {
+              await setRemoteProperty(.isOn, at: entry.wrappedRelayNumber - 1, to: entry.newValue ? "true" : "false")
+              relays[entry.wrappedRelayNumber - 1].isOn = entry.newValue
+              try await Task.sleep(for: .seconds(entry.delay))
+            }
+          }
+        }
+        setInProcess(false)
+      }
+    }
   }
   
   func relaysUpdate(_ device: Device?) {
