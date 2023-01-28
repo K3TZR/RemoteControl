@@ -2,7 +2,7 @@
 //  Device+CoreDataProperties.swift
 //  RemoteControl
 //
-//  Created by Douglas Adams on 1/23/23.
+//  Created by Douglas Adams on 1/27/23.
 //
 //
 
@@ -23,26 +23,9 @@ extension Device {
     @NSManaged public var showEmptyNames: Bool
     @NSManaged public var title: String?
     @NSManaged public var user: String?
-    @NSManaged public var relays: NSSet?
     @NSManaged public var onSteps: NSSet?
     @NSManaged public var offSteps: NSSet?
-
-}
-
-// MARK: Generated accessors for relays
-extension Device {
-
-    @objc(addRelaysObject:)
-    @NSManaged public func addToRelays(_ value: Relay)
-
-    @objc(removeRelaysObject:)
-    @NSManaged public func removeFromRelays(_ value: Relay)
-
-    @objc(addRelays:)
-    @NSManaged public func addToRelays(_ values: NSSet)
-
-    @objc(removeRelays:)
-    @NSManaged public func removeFromRelays(_ values: NSSet)
+    @NSManaged public var locks: NSSet?
 
 }
 
@@ -77,6 +60,23 @@ extension Device {
 
     @objc(removeOffSteps:)
     @NSManaged public func removeFromOffSteps(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for locks
+extension Device {
+
+    @objc(addLocksObject:)
+    @NSManaged public func addToLocks(_ value: Lock)
+
+    @objc(removeLocksObject:)
+    @NSManaged public func removeFromLocks(_ value: Lock)
+
+    @objc(addLocks:)
+    @NSManaged public func addToLocks(_ values: NSSet)
+
+    @objc(removeLocks:)
+    @NSManaged public func removeFromLocks(_ values: NSSet)
 
 }
 

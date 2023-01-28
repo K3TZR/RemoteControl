@@ -7,16 +7,42 @@
 
 import SwiftUI
 
+final class AppDelegate: NSObject, NSApplicationDelegate {
+  func applicationDidFinishLaunching(_ notification: Notification) {
+    // disable tab view
+    NSWindow.allowsAutomaticWindowTabbing = false
+  }
+    
+  func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+    true
+  }
+}
+
 @main
 struct RemoteControlApp: App {
-  
-  @StateObject var dataController = DataController()
-  
+  @NSApplicationDelegateAdaptor(AppDelegate.self)
+  var appDelegate
+
+  @StateObject var deviceModel = DeviceModel()
+  @StateObject var relaysModel = RelaysModel()
+
   var body: some Scene {
     WindowGroup {
-      ParentView()
-        .environment(\.managedObjectContext, dataController.container.viewContext)
-        .environmentObject(dataController)
+      DeviceControlView()
+        .environment(\.managedObjectContext, deviceModel.container.viewContext)
+        .environmentObject(deviceModel)
+        .environmentObject(relaysModel)
     }
+    .windowStyle(.hiddenTitleBar)
+
+    Settings {
+      SettingsView()
+        .environment(\.managedObjectContext, deviceModel.container.viewContext)
+        .environmentObject(deviceModel)
+        .environmentObject(relaysModel)
+    }
+    .windowStyle(.hiddenTitleBar)
+    .windowResizability(WindowResizability.contentSize)
+    .defaultPosition(.topLeading)
   }
 }

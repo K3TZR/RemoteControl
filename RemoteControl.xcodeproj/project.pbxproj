@@ -10,40 +10,44 @@
 		9F59D49C297D68D4003B4512 /* Device+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D49A297D68D4003B4512 /* Device+CoreDataClass.swift */; };
 		9F59D49D297D68D4003B4512 /* Device+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D49B297D68D4003B4512 /* Device+CoreDataProperties.swift */; };
 		9F59D49F297D7F74003B4512 /* DeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D49E297D7F74003B4512 /* DeviceExtensions.swift */; };
-		9F59D4A2297D86EF003B4512 /* Relay+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4A0297D86EF003B4512 /* Relay+CoreDataClass.swift */; };
-		9F59D4A3297D86EF003B4512 /* Relay+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4A1297D86EF003B4512 /* Relay+CoreDataProperties.swift */; };
 		9F59D4A6297F7A70003B4512 /* OnStep+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4A4297F7A70003B4512 /* OnStep+CoreDataClass.swift */; };
 		9F59D4A7297F7A70003B4512 /* OnStep+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4A5297F7A70003B4512 /* OnStep+CoreDataProperties.swift */; };
 		9F59D4AA297F7D0A003B4512 /* OffStep+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4A8297F7D0A003B4512 /* OffStep+CoreDataClass.swift */; };
 		9F59D4AB297F7D0A003B4512 /* OffStep+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4A9297F7D0A003B4512 /* OffStep+CoreDataProperties.swift */; };
+		9F59D4EB29818ED6003B4512 /* RelaysModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4EA29818ED6003B4512 /* RelaysModel.swift */; };
+		9F59D4ED29819EAE003B4512 /* DeviceControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4EC29819EAE003B4512 /* DeviceControlView.swift */; };
+		9F59D4F029845513003B4512 /* Lock+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4EE29845513003B4512 /* Lock+CoreDataClass.swift */; };
+		9F59D4F129845513003B4512 /* Lock+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59D4EF29845513003B4512 /* Lock+CoreDataProperties.swift */; };
 		9FC71208297C66E200920CA1 /* RemoteControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC71207297C66E200920CA1 /* RemoteControlApp.swift */; };
-		9FC7120A297C66E200920CA1 /* ParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC71209297C66E200920CA1 /* ParentView.swift */; };
+		9FC7120A297C66E200920CA1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC71209297C66E200920CA1 /* SettingsView.swift */; };
 		9FC7120C297C66E300920CA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FC7120B297C66E300920CA1 /* Assets.xcassets */; };
 		9FC7120F297C66E300920CA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FC7120E297C66E300920CA1 /* Preview Assets.xcassets */; };
 		9FC71218297C670000920CA1 /* Devices.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FC71216297C670000920CA1 /* Devices.xcdatamodeld */; };
-		9FC7121A297C6ADC00920CA1 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC71219297C6ADC00920CA1 /* DataController.swift */; };
-		9FC7121C297C716800920CA1 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC7121B297C716800920CA1 /* DetailView.swift */; };
+		9FC7121A297C6ADC00920CA1 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC71219297C6ADC00920CA1 /* DeviceModel.swift */; };
+		9FC7121C297C716800920CA1 /* SettingsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC7121B297C716800920CA1 /* SettingsDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9F59D49A297D68D4003B4512 /* Device+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Device+CoreDataClass.swift"; path = "RemoteControl/Device+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9F59D49B297D68D4003B4512 /* Device+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Device+CoreDataProperties.swift"; path = "RemoteControl/Device+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9F59D49E297D7F74003B4512 /* DeviceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceExtensions.swift; sourceTree = "<group>"; };
-		9F59D4A0297D86EF003B4512 /* Relay+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Relay+CoreDataClass.swift"; path = "RemoteControl/Relay+CoreDataClass.swift"; sourceTree = "<group>"; };
-		9F59D4A1297D86EF003B4512 /* Relay+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Relay+CoreDataProperties.swift"; path = "RemoteControl/Relay+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9F59D4A4297F7A70003B4512 /* OnStep+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OnStep+CoreDataClass.swift"; path = "RemoteControl/OnStep+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9F59D4A5297F7A70003B4512 /* OnStep+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OnStep+CoreDataProperties.swift"; path = "RemoteControl/OnStep+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9F59D4A8297F7D0A003B4512 /* OffStep+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OffStep+CoreDataClass.swift"; path = "RemoteControl/OffStep+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9F59D4A9297F7D0A003B4512 /* OffStep+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OffStep+CoreDataProperties.swift"; path = "RemoteControl/OffStep+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9F59D4EA29818ED6003B4512 /* RelaysModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelaysModel.swift; sourceTree = "<group>"; };
+		9F59D4EC29819EAE003B4512 /* DeviceControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceControlView.swift; sourceTree = "<group>"; };
+		9F59D4EE29845513003B4512 /* Lock+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Lock+CoreDataClass.swift"; path = "RemoteControl/Lock+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9F59D4EF29845513003B4512 /* Lock+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Lock+CoreDataProperties.swift"; path = "RemoteControl/Lock+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9FC71204297C66E200920CA1 /* RemoteControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemoteControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FC71207297C66E200920CA1 /* RemoteControlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteControlApp.swift; sourceTree = "<group>"; };
-		9FC71209297C66E200920CA1 /* ParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentView.swift; sourceTree = "<group>"; };
+		9FC71209297C66E200920CA1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9FC7120B297C66E300920CA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9FC7120E297C66E300920CA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9FC71210297C66E300920CA1 /* RemoteControl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RemoteControl.entitlements; sourceTree = "<group>"; };
 		9FC71217297C670000920CA1 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		9FC71219297C6ADC00920CA1 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		9FC7121B297C716800920CA1 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		9FC71219297C6ADC00920CA1 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
+		9FC7121B297C716800920CA1 /* SettingsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,12 +64,12 @@
 		9FC711FB297C66E200920CA1 = {
 			isa = PBXGroup;
 			children = (
+				9F59D4EE29845513003B4512 /* Lock+CoreDataClass.swift */,
+				9F59D4EF29845513003B4512 /* Lock+CoreDataProperties.swift */,
 				9F59D4A8297F7D0A003B4512 /* OffStep+CoreDataClass.swift */,
 				9F59D4A9297F7D0A003B4512 /* OffStep+CoreDataProperties.swift */,
 				9F59D4A4297F7A70003B4512 /* OnStep+CoreDataClass.swift */,
 				9F59D4A5297F7A70003B4512 /* OnStep+CoreDataProperties.swift */,
-				9F59D4A0297D86EF003B4512 /* Relay+CoreDataClass.swift */,
-				9F59D4A1297D86EF003B4512 /* Relay+CoreDataProperties.swift */,
 				9F59D49A297D68D4003B4512 /* Device+CoreDataClass.swift */,
 				9F59D49B297D68D4003B4512 /* Device+CoreDataProperties.swift */,
 				9FC71206297C66E200920CA1 /* RemoteControl */,
@@ -84,15 +88,17 @@
 		9FC71206297C66E200920CA1 /* RemoteControl */ = {
 			isa = PBXGroup;
 			children = (
-				9FC71207297C66E200920CA1 /* RemoteControlApp.swift */,
-				9FC71209297C66E200920CA1 /* ParentView.swift */,
-				9FC71216297C670000920CA1 /* Devices.xcdatamodeld */,
 				9FC7120B297C66E300920CA1 /* Assets.xcassets */,
-				9FC71210297C66E300920CA1 /* RemoteControl.entitlements */,
-				9FC7120D297C66E300920CA1 /* Preview Content */,
-				9FC71219297C6ADC00920CA1 /* DataController.swift */,
-				9FC7121B297C716800920CA1 /* DetailView.swift */,
+				9FC71219297C6ADC00920CA1 /* DeviceModel.swift */,
+				9F59D4EC29819EAE003B4512 /* DeviceControlView.swift */,
 				9F59D49E297D7F74003B4512 /* DeviceExtensions.swift */,
+				9F59D4EA29818ED6003B4512 /* RelaysModel.swift */,
+				9FC71216297C670000920CA1 /* Devices.xcdatamodeld */,
+				9FC7120D297C66E300920CA1 /* Preview Content */,
+				9FC71210297C66E300920CA1 /* RemoteControl.entitlements */,
+				9FC71207297C66E200920CA1 /* RemoteControlApp.swift */,
+				9FC7121B297C716800920CA1 /* SettingsDetailView.swift */,
+				9FC71209297C66E200920CA1 /* SettingsView.swift */,
 			);
 			path = RemoteControl;
 			sourceTree = "<group>";
@@ -176,18 +182,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FC71218297C670000920CA1 /* Devices.xcdatamodeld in Sources */,
+				9F59D4ED29819EAE003B4512 /* DeviceControlView.swift in Sources */,
 				9F59D4A6297F7A70003B4512 /* OnStep+CoreDataClass.swift in Sources */,
-				9F59D4A3297D86EF003B4512 /* Relay+CoreDataProperties.swift in Sources */,
-				9F59D4A2297D86EF003B4512 /* Relay+CoreDataClass.swift in Sources */,
 				9F59D4AA297F7D0A003B4512 /* OffStep+CoreDataClass.swift in Sources */,
+				9F59D4F029845513003B4512 /* Lock+CoreDataClass.swift in Sources */,
+				9F59D4EB29818ED6003B4512 /* RelaysModel.swift in Sources */,
 				9F59D49F297D7F74003B4512 /* DeviceExtensions.swift in Sources */,
-				9FC7121A297C6ADC00920CA1 /* DataController.swift in Sources */,
+				9FC7121A297C6ADC00920CA1 /* DeviceModel.swift in Sources */,
 				9F59D4A7297F7A70003B4512 /* OnStep+CoreDataProperties.swift in Sources */,
-				9FC7121C297C716800920CA1 /* DetailView.swift in Sources */,
+				9FC7121C297C716800920CA1 /* SettingsDetailView.swift in Sources */,
 				9F59D49C297D68D4003B4512 /* Device+CoreDataClass.swift in Sources */,
 				9F59D4AB297F7D0A003B4512 /* OffStep+CoreDataProperties.swift in Sources */,
+				9F59D4F129845513003B4512 /* Lock+CoreDataProperties.swift in Sources */,
 				9F59D49D297D68D4003B4512 /* Device+CoreDataProperties.swift in Sources */,
-				9FC7120A297C66E200920CA1 /* ParentView.swift in Sources */,
+				9FC7120A297C66E200920CA1 /* SettingsView.swift in Sources */,
 				9FC71208297C66E200920CA1 /* RemoteControlApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,7 +335,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.RemoteControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -354,7 +362,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.RemoteControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

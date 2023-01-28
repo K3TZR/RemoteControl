@@ -8,9 +8,14 @@
         <attribute name="showEmptyNames" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="user" optional="YES" attributeType="String"/>
+        <relationship name="locks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lock" inverseName="device" inverseEntity="Lock"/>
         <relationship name="offSteps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OffStep" inverseName="device" inverseEntity="OffStep"/>
         <relationship name="onSteps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OnStep" inverseName="device" inverseEntity="OnStep"/>
-        <relationship name="relays" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Relay" inverseName="device" inverseEntity="Relay"/>
+    </entity>
+    <entity name="Lock" representedClassName="Lock" syncable="YES">
+        <attribute name="lockNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="value" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Device" inverseName="locks" inverseEntity="Device"/>
     </entity>
     <entity name="OffStep" representedClassName="OffStep" syncable="YES">
         <attribute name="delay" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -27,11 +32,5 @@
         <attribute name="relayNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="stepNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Device" inverseName="onSteps" inverseEntity="Device"/>
-    </entity>
-    <entity name="Relay" representedClassName="Relay" syncable="YES">
-        <attribute name="locked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="usage" optional="YES" attributeType="String"/>
-        <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Device" inverseName="relays" inverseEntity="Device"/>
     </entity>
 </model>

@@ -7,25 +7,32 @@
 
 import SwiftUI
 
-struct DetailView: View {
+struct SettingsDetailView: View {
   @ObservedObject var device: Device
   
-  @EnvironmentObject var dataController : DataController
+  @AppStorage("deviceIndex") var deviceIndex: Int = -1
 
+  @EnvironmentObject var deviceModel: DeviceModel
+  @EnvironmentObject var relaysModel: RelaysModel
+  
   var body: some View {
     VStack {
       DeviceParamsView(device: device)
-      Divider().background(Color(.blue))
       
-      RelaysView(device: device)
-      Divider().background(Color(.blue))
-
       CyclesView(device: device)
-      Divider().background(Color(.blue))
+      HStack {
+        Spacer()
+        Button("Save Device") { deviceModel.save() }
+      }
       
-      Button("Save Changes") { dataController.save() }.disabled(!device.hasChanges)
+      Divider().background(Color(.blue))
+      RelaysView(relaysModel: relaysModel, device: device)
+      
+      HStack {
+        Spacer()
+        Button("Save Relays") { relaysModel.relaysUpdate(device) }
+      }
     }
-    .onDisappear { print("DetailView onDisappear") }
   }
 }
 
@@ -68,44 +75,57 @@ private struct DeviceParamsView: View {
 }
 
 private struct RelaysView: View {
+  @ObservedObject var relaysModel: RelaysModel
   @ObservedObject var device: Device
 
   var body: some View {
-    HStack(spacing: 100) {
-
-      Grid (verticalSpacing: 5) {
-        GridRow {
-          Text("#")
-          Text("Usage")
-          Text("Lock")
-        }
-        ForEach($device.relayArray, id: \.self) { $relay in
-          if relay.wrappedNumber % 2 != 0 {
-            GridRow {
-              Text("\(relay.wrappedNumber).")
-              TextField("", text: $relay.wrappedUsage)
-              Toggle("", isOn: $relay.locked)
+    if relaysModel.relays.count == 0 || device.locksArray.count == 0 {
+      VStack {
+        Spacer()
+        Text("Relays not available until Connected").font(.title).foregroundColor(.red)
+        Spacer()
+      }
+    } else {
+      HStack(spacing: 100) {
+        
+        Grid (verticalSpacing: 5) {
+          GridRow {
+            Text("#")
+            Text("Usage")
+            Text("Locked")
+            Text("Disabled")
+          }
+          ForEach($relaysModel.relays) { $relay in
+            if relay.number % 2 != 0 {
+              GridRow {
+                Text(String(relay.number) + ".")
+                TextField("", text: $relay.name)
+                Toggle("", isOn: $relay.isLocked)
+                Toggle("", isOn: $device.locksArray[relay.number - 1].value)
+              }.disabled(relay.isLocked)
             }
           }
-        }
-      }.frame(width: 250)
-
-      Grid (verticalSpacing: 5) {
-        GridRow {
-          Text("#")
-          Text("Usage")
-          Text("Lock")
-        }
-        ForEach($device.relayArray, id: \.self) { $relay in
-          if relay.wrappedNumber % 2 == 0 {
-            GridRow {
-              Text("\(relay.wrappedNumber).")
-              TextField("", text: $relay.wrappedUsage)
-              Toggle("", isOn: $relay.locked)
+        }.frame(width: 250)
+        
+        Grid (verticalSpacing: 5) {
+          GridRow {
+            Text("#")
+            Text("Usage")
+            Text("Locked")
+            Text("Disabled")
+          }
+          ForEach($relaysModel.relays) { $relay in
+            if relay.number % 2 == 0 {
+              GridRow {
+                Text(String(relay.number) + ".")
+                TextField("", text: $relay.name)
+                Toggle("", isOn: $relay.isLocked)
+                Toggle("", isOn: $device.locksArray[relay.number - 1].value)
+              }.disabled(relay.isLocked)
             }
           }
-        }
-      }.frame(width: 250)
+        }.frame(width: 250)
+      }
     }
   }
 }
@@ -185,13 +205,13 @@ private struct CyclesView: View {
   }
 }
 
-struct DeviceView_Previews: PreviewProvider {
-  static var dataController = DataController()
+struct SettingsDetailView_Previews: PreviewProvider {
+  static var coreDataModel = DeviceModel()
   
   static var previews: some View {
     
-    DetailView(device: dataController.addDevice(save: false))
-      .environment(\.managedObjectContext, dataController.container.viewContext)
-      .environmentObject(dataController)
+    SettingsDetailView(device: coreDataModel.addDevice(save: false))
+      .environment(\.managedObjectContext, coreDataModel.container.viewContext)
+      .environmentObject(coreDataModel)
   }
 }

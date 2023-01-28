@@ -30,16 +30,16 @@ extension Device {
 
 extension Device {
   // convert from NSSet <--> Array
-  // ----- RELAYS -----
-  public var relayArray: [Relay] {
+  // ----- LOCKS -----
+  public var locksArray: [Lock] {
     get {
-      let set = relays as? Set<Relay> ?? []
+      let set = locks as? Set<Lock> ?? []
       return set.sorted {
-        $0.number < $1.number
+        $0.lockNumber < $1.lockNumber
       }
     }
     set {
-      relays = NSSet(array: newValue)
+      locks = NSSet(array: newValue)
     }
   }
   // ----- ON STEPS -----
@@ -66,17 +66,6 @@ extension Device {
       offSteps = NSSet(array: newValue)
     }
   }
-}
-
-extension Relay {
-  // eliminate the "optional" problem
-  // entries not needed here for Bool attributes
-  public var wrappedUsage: String{
-    get { usage ?? "" }
-    set { usage = newValue }}
-  public var wrappedNumber: Int{
-    get { Int(number) }
-    set { number = Int16(newValue) }}
 }
 
 extension OnStep {

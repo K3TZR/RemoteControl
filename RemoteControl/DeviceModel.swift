@@ -6,10 +6,11 @@
 //
 import CoreData
 import Foundation
+import SwiftUI
 
-class DataController: ObservableObject {
+class DeviceModel: ObservableObject {
   let container = NSPersistentContainer(name: "Devices")
-  
+
   init() {
     container.loadPersistentStores { description, error in
       if let error = error {
@@ -29,13 +30,12 @@ class DataController: ObservableObject {
     newDevice.password = ""
     newDevice.showEmptyNames = true
 
-    // create the relays
+    // create the locks
     for i in 1...8 {
-      let relay = Relay(context: container.viewContext)
-      relay.usage = "---"
-      relay.locked = false
-      relay.device = newDevice
-      relay.number = Int16(i)
+      let lock = Lock(context: container.viewContext)
+      lock.lockNumber = Int16(i)
+      lock.value = false
+      lock.device = newDevice
     }
     // create the Cycle On Stepa
     for i in 1...8 {
@@ -69,6 +69,14 @@ class DataController: ObservableObject {
     return newDevice
   }
 
+  func toggleLock(_ device: Device, _ relayNumber: Int) {
+    // rewrite the array to force a redraw in the DeviceControlView
+    var currentLocks = device.locksArray
+    currentLocks[relayNumber - 1].value.toggle()
+    device.locksArray = currentLocks
+    save()
+  }
+  
   func save() {
     // only save if changed
     if container.viewContext.hasChanges {
@@ -76,7 +84,7 @@ class DataController: ObservableObject {
         try container.viewContext.save()
       }
       catch {
-        // something BAD happened
+        // something VERY BAD happened
         fatalError("Unable to save data: \(error.localizedDescription)")
       }
     }

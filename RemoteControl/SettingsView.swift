@@ -7,16 +7,17 @@
 
 import SwiftUI
 
-struct ParentView: View {
+struct SettingsView: View {
 
-  @State var selectedDevice: Device? = nil
+  @State var selectedDevice: Device?
 
-  @EnvironmentObject var dataController : DataController
+  @EnvironmentObject var relaysModel: RelaysModel
+  @EnvironmentObject var coreDataModel : DeviceModel
   @FetchRequest(sortDescriptors: [ SortDescriptor(\.name),]) var devices: FetchedResults<Device>
-    
+
   var body: some View {
     NavigationSplitView {
-      List(devices, selection: $selectedDevice ) { device in
+      List(devices, selection: $selectedDevice) { device in
         VStack(alignment: .leading) {
           Text(device.wrappedName).font(.headline)
           Text(device.wrappedTitle).foregroundColor(.secondary)
@@ -27,7 +28,7 @@ struct ParentView: View {
           Image(systemName: "plus.rectangle")
           // add a new Device
             .onTapGesture {
-              _ = dataController.addDevice()
+              _ = coreDataModel.addDevice()
             }
           Image(systemName: "minus.rectangle")
             .onTapGesture {
@@ -36,21 +37,32 @@ struct ParentView: View {
           
         }.font(.title2)
       }
+      .onChange(of: selectedDevice) { newDevice in
+        if let device = newDevice, device.name != "NewName" {
+          relaysModel.relaysSync(device)
+        }
+      }
+      
     } detail: {
-      if selectedDevice != nil {
-        // show the details if a device is selected
-        DetailView(device: selectedDevice!)
-        
-      } else {
+      if devices.count == 0 {
         // ask the user to select a device
         VStack {
           Spacer()
-          if devices.count == 0 {
-            Text("ADD one or more Devices").font(.title)
-          } else {
-            Text("Select a Device").font(.title)
-          }
+          Text("ADD one or more Devices").font(.title)
           Spacer()
+        }
+        
+      } else {
+        if selectedDevice == nil {
+          VStack {
+            Spacer()
+            Text("Select a Device")
+            Spacer()
+          }
+        } else {
+          SettingsDetailView(device: selectedDevice!)
+//            .environmentObject(relaysModel)
+            .environmentObject(coreDataModel)
         }
       }
     }
@@ -65,18 +77,18 @@ struct ParentView: View {
     if selectedDevice != nil {
       let device = selectedDevice!
       selectedDevice = nil
-      dataController.delete(device)
+      coreDataModel.delete(device)
     }
   }
 }
 
-struct ParentView_Previews: PreviewProvider {
-  static var dataController = DataController()
+struct SettingsView_Previews: PreviewProvider {
+  static var coreDataModel = DeviceModel()
   
   static var previews: some View {
     
-    return ParentView()
-      .environment(\.managedObjectContext, dataController.container.viewContext)
-      .environmentObject(dataController)
+    return SettingsView()
+      .environment(\.managedObjectContext, coreDataModel.container.viewContext)
+      .environmentObject(coreDataModel)
   }
 }
